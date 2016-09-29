@@ -3,13 +3,15 @@
 
 class Bank {
 public:
-	void AddAccount();
-	void RemoveAccount();
-	void DepositMoney();
-	void WithdrawMoney();
-	int CheckBalance();
+	void AddAccount(int id);
+	void RemoveAccount(int id);
+	void DepositMoney(double money);
+	void WithdrawMoney(double money);
+	void CheckBalance();
+	void SetCurrentAccount(int id);
+	Bank();
 
 private:
 	std::vector<Account> accounts;	
-	Account currentAccount;
+	Account(0) currentAccount;
 };
