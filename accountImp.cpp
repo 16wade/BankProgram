@@ -13,9 +13,13 @@ void Account::DepositMoney(double depositAmount) {
 }
 
 void Account::WithdrawMoney(double withdrawAmount) {
-	balance = balance - withdrawAmount;
-	std::cout << "You have withdrawn $" << withdrawAmount << std::endl;
-	std::cout << "Your new balance is: $" << balance << std::endl;
+	if (balance - withdrawAmount > 0) {
+		balance = balance - withdrawAmount;
+		std::cout << "You have withdrawn $" << withdrawAmount << std::endl;
+		std::cout << "Your new balance is: $" << balance << std::endl;
+	}
+	else
+		std::cout << "Not enough funds. Balance: " << balance << std::endl;
 }
 
 double Account::CheckBalance() {

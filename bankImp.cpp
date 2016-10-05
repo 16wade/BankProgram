@@ -32,10 +32,10 @@ void Bank::RemoveAccount(int id) {
 
 	if (found != -1)
 	{
-		if (currentAccount->GetId() == id)
+		if (currentAccount != nullptr && currentAccount->GetId() == id)
 			currentAccount = nullptr;
 		accounts.erase(accounts.begin() + found);
-		std::cout << "Account" << id << "has been removed!" << std::endl;
+		std::cout << "Account" << id << " has been removed!" << std::endl;
 	}
 
 	else
