@@ -2,7 +2,7 @@
 #include <iostream>
 
 Bank::Bank() {
-	currentAccount = null;
+	currentAccount = nullptr;
 }
 
 void Bank::AddAccount(int id) {
@@ -17,7 +17,7 @@ void Bank::AddAccount(int id) {
 		std::cout << "An account already exists with the iD " << id << std::endl;
 	else
 	{
-		accounts.push_back(new Account::Account(id));
+		accounts.push_back(Account(id));
 		std::cout << "Account added!" << std::endl;
 	}
 }
@@ -32,8 +32,8 @@ void Bank::RemoveAccount(int id) {
 
 	if (found != -1)
 	{
-		if (currentAccount.GetId() == id)
-			currentAccount = null;
+		if (currentAccount->GetId() == id)
+			currentAccount = nullptr;
 		accounts.erase(accounts.begin() + found);
 		std::cout << "Account" << id << "has been removed!" << std::endl;
 	}
@@ -42,39 +42,41 @@ void Bank::RemoveAccount(int id) {
 		std::cout << "Account not found." << std::endl;
 }
 
-void Bank::SetCurrentAccount(int id){
+void Bank::SetCurrentAccount(int id) {
 	bool found = false;
 	for (int i = 0; i < accounts.size(); i++)
 	{
 		if(accounts[i].GetId() == id)
 		{	
-			currentAccount = accounts[i];
+			currentAccount = &accounts[i];
 			found = true;
+			std::cout << "Account set." << std::endl;
 		}
 	}
 	if (!found)
 	{
-		currentAccount = null;
+		std::cout << "Account not found." << std::endl;
+		currentAccount = nullptr;
 	}
 }
 
-void Bank::DepositMoney(double money){
-	if (currentAccount != null)
-		currentAccount.DepositMoney(money);
+void Bank::DepositMoney(double money) {
+	if (currentAccount != nullptr)
+		currentAccount->DepositMoney(money);
 	else
 		std::cout << "You're not currently in your account!" << std::endl;
 }
 
-void Bank::WithdrawMoney(double money){
-	if (currentAccount != null)
-		currentAccount.WithdrawMoney(money);
+void Bank::WithdrawMoney(double money) {
+	if (currentAccount != nullptr)
+		currentAccount->WithdrawMoney(money);
 	else
 		std::cout << "You're not currently in your account!" << std::endl;
 }
 
-void Bank::CheckBalance(){
-	if (currentAccount != null)
-		std::cout << "$" << currentAccount.CheckBalance() << std::endl;
+void Bank::CheckBalance() {
+	if (currentAccount != nullptr)
+		std::cout << "$" << currentAccount->CheckBalance() << std::endl;
 	else
 		std::cout << "You're not currently in your account!" << std::endl;
 }

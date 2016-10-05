@@ -13,5 +13,5 @@ public:
 
 private:
 	std::vector<Account> accounts;	
-	Account(0) currentAccount;
+	Account *currentAccount;
 };
